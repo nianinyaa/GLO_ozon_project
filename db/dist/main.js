@@ -10,23 +10,23 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./js/cart.js":
-/*!********************!*\
-  !*** ./js/cart.js ***!
-  \********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst cart = () => {\n  const cartBtn = document.getElementById(\"cart\");\n  const cartModal = document.querySelector(\".cart\");\n  const cartCloseBtn = cartModal.querySelector(\".cart-close\");\n\n  const openCart = () => {\n    cartModal.style.display = \"flex\";\n  };\n\n  const closeCart = () => {\n    cartModal.style.display = \"\";\n  };\n\n  cartBtn.addEventListener(\"click\", openCart);\n\n  cartCloseBtn.addEventListener(\"click\", closeCart);\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (cart);\n\n//# sourceURL=webpack://db/./js/cart.js?");
-
-/***/ }),
-
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_cart__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../js/cart */ \"./js/cart.js\");\n/* harmony import */ var _modules_load__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/load */ \"./src/modules/load.js\");\n/* harmony import */ var _modules_search__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/search */ \"./src/modules/search.js\");\n/* harmony import */ var _modules_catalog__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/catalog */ \"./src/modules/catalog.js\");\n\n\n\n\n\n(0,_js_cart__WEBPACK_IMPORTED_MODULE_0__[\"default\"])()\n;(0,_modules_load__WEBPACK_IMPORTED_MODULE_1__[\"default\"])()\n;(0,_modules_search__WEBPACK_IMPORTED_MODULE_2__[\"default\"])()\n;(0,_modules_catalog__WEBPACK_IMPORTED_MODULE_3__[\"default\"])()\n\n//# sourceURL=webpack://db/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_cart__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/cart */ \"./src/modules/cart.js\");\n/* harmony import */ var _modules_load__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/load */ \"./src/modules/load.js\");\n/* harmony import */ var _modules_search__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/search */ \"./src/modules/search.js\");\n/* harmony import */ var _modules_catalog__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/catalog */ \"./src/modules/catalog.js\");\n/* harmony import */ var _modules_filter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/filter */ \"./src/modules/filter.js\");\n\n\n\n\n\n\n(0,_modules_cart__WEBPACK_IMPORTED_MODULE_0__[\"default\"])()\n;(0,_modules_load__WEBPACK_IMPORTED_MODULE_1__[\"default\"])()\n;(0,_modules_search__WEBPACK_IMPORTED_MODULE_2__[\"default\"])()\n;(0,_modules_catalog__WEBPACK_IMPORTED_MODULE_3__[\"default\"])()\n;(0,_modules_filter__WEBPACK_IMPORTED_MODULE_4__[\"default\"])( )\n\n//# sourceURL=webpack://db/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/modules/cart.js":
+/*!*****************************!*\
+  !*** ./src/modules/cart.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst cart = () => {\n  const cartBtn = document.getElementById(\"cart\");\n  const cartModal = document.querySelector(\".cart\");\n  const cartCloseBtn = cartModal.querySelector(\".cart-close\");\n  \n  const goodsWrapper = document.querySelector('.goods');\n\n  const openCart = () => {\n    cartModal.style.display = \"flex\";\n  };\n\n  const closeCart = () => {\n    cartModal.style.display = \"\";\n  };\n\n  cartBtn.addEventListener(\"click\", openCart);\n\n  cartCloseBtn.addEventListener(\"click\", closeCart);\n\n  goodsWrapper.addEventListener('click', (event) => {\n    if(event.target.classList.contains('btn-primary')){\n        const card = event.target.closest('.card')\n        const key = card.dataset.key;\n        const goods = JSON.parse(localStorage.getItem('goods'))\n\n        const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];\n            //чуть выше это тернарный оператор - заносит в значение карт одно из двух вариантов \n\n         const goodItem = goods.find((item) => {\n          return item.id === +key\n         })\n         console.log(goodItem)\n    }\n  }) \n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (cart);\n\n//# sourceURL=webpack://db/./src/modules/cart.js?");
 
 /***/ }),
 
@@ -40,13 +40,23 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/modules/filter.js":
+/*!*******************************!*\
+  !*** ./src/modules/filter.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _getData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getData */ \"./src/modules/getData.js\");\n/* harmony import */ var _renderGoods__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./renderGoods */ \"./src/modules/renderGoods.js\");\n/* harmony import */ var _filters__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./filters */ \"./src/modules/filters.js\");\n \n\n\n \n \n const filter = () =>{\n    const minInput = document.getElementById('min');\n    const maxInput = document.getElementById('max');\n    const checkboxInput = document.getElementById('discount-checkbox');\n    const checkboxSpan = document.querySelector('.filter-check_checkmark')\n   \n    minInput.addEventListener('input', () => {\n      ;(0,_getData__WEBPACK_IMPORTED_MODULE_0__[\"default\"])().then((data) =>{\n        ;(0,_renderGoods__WEBPACK_IMPORTED_MODULE_1__[\"default\"])((0,_filters__WEBPACK_IMPORTED_MODULE_2__.priceFilter)(((0,_filters__WEBPACK_IMPORTED_MODULE_2__.hotSaleFilter)(data, checkboxInput.checked)) , minInput.value, maxInput.value )) \n      })\n    })\n\n    maxInput.addEventListener('input', () => {\n        ;(0,_getData__WEBPACK_IMPORTED_MODULE_0__[\"default\"])().then((data) =>{\n            ;(0,_renderGoods__WEBPACK_IMPORTED_MODULE_1__[\"default\"])((0,_filters__WEBPACK_IMPORTED_MODULE_2__.priceFilter)(((0,_filters__WEBPACK_IMPORTED_MODULE_2__.hotSaleFilter)(data, checkboxInput.checked)) , minInput.value, maxInput.value )) \n          }) \n    })\n\n\n    checkboxInput.addEventListener('change', () => {\n        // console.log ('change');\n        // console.log(checkboxInput.checked);\n        \n        if(checkboxInput.checked) {  \n            checkboxSpan.classList.add('checked')\n        } else{\n             checkboxSpan.classList.remove('checked')\n        }\n\n        (0,_getData__WEBPACK_IMPORTED_MODULE_0__[\"default\"])().then((data) =>{\n            (0,_renderGoods__WEBPACK_IMPORTED_MODULE_1__[\"default\"])((0,_filters__WEBPACK_IMPORTED_MODULE_2__.priceFilter)(((0,_filters__WEBPACK_IMPORTED_MODULE_2__.hotSaleFilter)(data, checkboxInput.checked)) , minInput.value, maxInput.value))\n          }) \n\n\n    }) \n\n\n }\n\n\n  \n\n\n\n /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (filter);\n\n//# sourceURL=webpack://db/./src/modules/filter.js?");
+
+/***/ }),
+
 /***/ "./src/modules/filters.js":
 /*!********************************!*\
   !*** ./src/modules/filters.js ***!
   \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   categoryFilter: () => (/* binding */ categoryFilter),\n/* harmony export */   searchFilter: () => (/* binding */ searchFilter)\n/* harmony export */ });\nconst searchFilter = (goods, value) => {\n    console.log(goods)\n    return goods.filter((goodsItem)  => {\n        return goodsItem.title.toLowerСase().includes(value.toLowerСase())  \n    })\n}\n\nconst categoryFilter = (goods, value) => {\n    return goods.filter((goodsItem)  => {\n        return goodsItem.category === value\n    })\n}\n\n//# sourceURL=webpack://db/./src/modules/filters.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   categoryFilter: () => (/* binding */ categoryFilter),\n/* harmony export */   hotSaleFilter: () => (/* binding */ hotSaleFilter),\n/* harmony export */   priceFilter: () => (/* binding */ priceFilter),\n/* harmony export */   searchFilter: () => (/* binding */ searchFilter)\n/* harmony export */ });\nconst searchFilter = (goods, value) => {\n    console.log(goods)\n    return goods.filter((goodsItem)  => {\n        return goodsItem.title.toLowerСase().includes(value.toLowerСase())  \n    })\n}\n\nconst categoryFilter = (goods, value) => {\n    return goods.filter((goodsItem)  => {\n        return goodsItem.category === value\n    })\n}\n\n\nconst priceFilter = (goods, min, max ) => {\n    return goods.filter((goodsItem)  => {\n        if (min === '' && max === '') {\n            return goodsItem\n        } else if (min !== '' && max !== '') {\n            return goodsItem.price > +min && goodsItem.price < +max\n        }else if (min !== '' && max === '') {\n            return goodsItem.price > +min\n\n        } else if (min ===  '' && max !== '') {\n            return goodsItem.price < +max\n        }\n\n    })\n\n}\nconst hotSaleFilter = (goods, value) => {\n    return goods.filter((goodsItem)  => {\n        if (value) {\n            return goodsItem.sale === true\n        } else {\n            return goodsItem \n        }\n    })\n}\n\n\n//# sourceURL=webpack://db/./src/modules/filters.js?");
 
 /***/ }),
 
@@ -76,7 +86,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst renderGoods = (goods) => {\n  const goodsWrapper = document.querySelector('.goods');\n\n  goodsWrapper.innerHTML = ''\n\n  goods.forEach((goodsItem) => {\n    goodsWrapper.insertAdjacentHTML(\n      'beforeend',\n      `\n        <div class=\"col-12 col-md-6 col-lg-4 col-xl-3\">\n\t\t\t<div class=\"card\">\n                ${goodsItem.sale ? '<div class=\"card-sale\">🔥Hot Sale🔥</div>' : ''}\n\t\t\t    <div class=\"card-img-wrapper\">\n\t\t\t\t\t<span class=\"card-img-top\"\n\t\t\t\t\t    style=\"background-image: url('${goodsItem.img}')\"></span>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"card-body justify-content-between\">\n\t\t\t\t    <div class=\"card-price\">${goodsItem.price} ₽</div>\n\t\t\t\t\t<h5 class=\"card-title\">${goodsItem.title}</h5>\n\t\t\t\t\t<button class=\"btn btn-primary\">В корзину</button>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t </div> \n            `) \n    //метод размещает верстку внутри контейнера//\n  })\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (renderGoods);\n\n\n//# sourceURL=webpack://db/./src/modules/renderGoods.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst renderGoods = (goods) => {\n  const goodsWrapper = document.querySelector('.goods');\n\nlocalStorage.setItem('goods', JSON.stringify(goods))\n\n\n  goodsWrapper.innerHTML = ''\n\n  goods.forEach((goodsItem) => {\n    goodsWrapper.insertAdjacentHTML(\n      'beforeend',\n      `\n        <div class=\"col-12 col-md-6 col-lg-4 col-xl-3\">\n\t\t\t<div class=\"card\" data-key=\"${goodsItem.id}\">\n                ${goodsItem.sale ? '<div class=\"card-sale\">🔥Hot Sale🔥</div>' : ''}\n\t\t\t    <div class=\"card-img-wrapper\">\n\t\t\t\t\t<span class=\"card-img-top\"\n\t\t\t\t\t    style=\"background-image: url('${goodsItem.img}')\"></span>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"card-body justify-content-between\">\n\t\t\t\t    <div class=\"card-price\">${goodsItem.price} ₽</div>\n\t\t\t\t\t<h5 class=\"card-title\">${goodsItem.title}</h5>\n\t\t\t\t\t<button class=\"btn btn-primary\">В корзину</button>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t </div> \n            `) \n    //метод размещает верстку внутри контейнера//\n  })\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (renderGoods);\n\n\n//# sourceURL=webpack://db/./src/modules/renderGoods.js?");
 
 /***/ }),
 
